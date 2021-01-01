@@ -1,0 +1,51 @@
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="maher_res_config_settings_view_form" model="ir.ui.view">
+            <field name="name">res.config.settings</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='module_l10n_eu_service']/../.." position="after">
+                    <div class="col-12 col-lg-6 o_setting_box" id="eu_service"
+                         title="If you're selling digital goods to customers in the EU, you must charge VAT based on your customers' locations. This rule applies regardless of you are located. Digital goods are defined in the legislation as broadcasting, telecommunications, and services that are electronically supplied instead of shipped. Gift cards sent online are not included in the definition.">
+                        <div class="o_setting_left_pane">
+                            <field name="discount_journal" widget="upgrade_boolean" />
+                        </div>
+                        <div class="o_setting_right_pane" string="Discount Journal">
+                            <label string="Discount Journal" for="discount_journal"/>
+                            <div class="text-muted">
+                                Discount Journal Accounts
+                            </div>
+                            <div class="content-group" string="Purchase">
+                                <div class="row mt16" attrs="{'invisible': [('discount_journal', '=', False)]}" >
+                                    <label string="Purchase Debit" for="account_purchase_debit_id"
+                                           class="col-lg-3 o_light_label"/>
+                                    <field name="account_purchase_debit_id" />
+                                </div>
+                                <div class="row mt16" attrs="{'invisible': [('discount_journal', '=', False)]}">
+                                    <label string="Purchase Credit" for="account_purchase_credit_id"
+                                           class="col-lg-3 o_light_label"/>
+                                    <field name="account_purchase_credit_id" />
+                                </div>
+                            </div>
+
+                            <div class="content-group" string="Sale">
+                                <div class="row mt16" attrs="{'invisible': [('discount_journal', '=', False)]}" >
+                                    <label string="Sale Debit" for="account_sale_debit_id"
+                                           class="col-lg-3 o_light_label"/>
+                                    <field name="account_sale_debit_id"  />
+                                </div>
+                                <div class="row mt16" attrs="{'invisible': [('discount_journal', '=', False)]}">
+                                    <label string="Sale Credit" for="account_sale_credit_id"
+                                           class="col-lg-3 o_light_label"/>
+                                    <field name="account_sale_credit_id"  />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
